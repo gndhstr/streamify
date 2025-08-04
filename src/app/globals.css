@@ -1,26 +1,129 @@
 @import "tailwindcss";
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+* {
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+    --container-width-lg: 30%;
+    --container-width-md: 50%;
+    --container-width-sm: 95%;
+
+    --transition: all 400ms ease;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html {
+    scroll-behavior: smooth;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+::-webkit-scrollbar {
+    display: none;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Poppins', sans-serif;
+    background: black;
+    color: white;
+}
+
+
+/* ================ GENERAL STYLES ================ */
+
+.container {
+    width: var(--container-width-lg);
+    margin: 0 auto;
+}
+
+/* Custom range input */
+input[type="range"] {
+  @apply w-full h-1 appearance-none bg-transparent;
+  -webkit-appearance: none;
+}
+
+/* Progress track */
+input[type="range"]::-webkit-slider-runnable-track {
+  @apply h-1 rounded-full bg-gray-600;
+}
+
+input[type="range"]::-moz-range-track {
+  @apply h-1 rounded-full bg-gray-600;
+}
+
+/* Progress fill */
+input[type="range"]::-webkit-slider-thumb {
+  @apply w-4 h-4 -mt-1.5 appearance-none bg-transparent;
+  -webkit-appearance: none;
+}
+
+input[type="range"]::-moz-range-thumb {
+  @apply w-4 h-4 -mt-1.5 appearance-none bg-transparent border-none;
+}
+
+/* Progress fill for Firefox */
+input[type="range"]::-moz-range-progress {
+  @apply bg-pink-500 h-1 rounded-full;
+}
+
+/* Custom progress bar container */
+.range-container {
+  @apply relative w-full h-1 bg-gray-600 rounded-full;
+}
+
+.range-progress {
+  @apply absolute top-0 left-0 h-full bg-pink-500 rounded-full;
+}
+
+.range-input {
+  @apply absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer;
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 4px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  @apply bg-pink-500/30 rounded-full;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+/* Smooth transitions */
+.audio-player * {
+  @apply transition-all duration-200;
+}
+
+/* Hide number input arrows */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+/* ========== MEDIA QUERIES (MED) ========== */
+@media screen and (max-width : 1024px) {
+    .container {
+        width: var(--container-width-md);
+    }
+
+    section {
+        margin-top: 6rem;
+    }
+}
+
+/* ========== MEDIA QUERIES (SML) ========== */
+@media screen and (max-width : 600px) {
+    .container {
+        width: var(--container-width-sm);
+    }
+
+    section >h2 {
+        margin-bottom: 2rem;
+    }
 }
