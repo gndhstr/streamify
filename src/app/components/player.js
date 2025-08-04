@@ -243,6 +243,8 @@ const Player = ({
             preload="auto"
             ref={audioRef}
             src={currentSong.audio}
+            onWaiting={() => setIsLoading(true)}
+            onCanPlay={() => setIsLoading(false)}
             onTimeUpdate={(e) => onTimeChange(e.target.currentTime)}
             onEnded={onSongEnd}
             onLoadedMetadata={(e) => {

@@ -12,6 +12,7 @@ const Main = () => {
   const [isRandom, setIsRandom] = useState(false);
   const [showPlayer, setShowPlayer] = useState(false);
   const [hoveredSongIndex, setHoveredSongIndex] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const togglePlay = () => setIsPlaying(!isPlaying);
 
@@ -49,10 +50,18 @@ const Main = () => {
   return (
     <div className='relative'>
       {/* Background Video */}
+      {isLoading && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-white border-opacity-50"></div>
+        </div>
+      )}
+
       {activeVideo && (
         <video
           key={activeVideo}
           src={activeVideo}
+          onWaiting={() => setIsLoading(true)}
+          onCanPlay={() => setIsLoading(false)}
           autoPlay
           muted
           loop
@@ -110,6 +119,7 @@ const Main = () => {
             songs={songs}
             currentSongIndex={currentSongIndex}
             isPlaying={isPlaying}
+            isLoading={isLoading}
             isRandom={isRandom}
             currentTime={currentTime}
             duration={duration}
